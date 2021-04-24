@@ -1,6 +1,7 @@
 {
   "name": "MusicVCG-ROBOT",
   "description": "Open-Source Robot to Play Songs in Your Telegram's Group Voice Chat. Powered by PyTgCalls.",
+  "logo": "https://telegra.ph/file/c05ee45a55a3edaea06fa.png",
   "keywords": ["music", "voicechat", "telegram"],
   "repository": "https://github.com/KENZO-404/MusicVCG-ROBOT",
   "stack": "container",
