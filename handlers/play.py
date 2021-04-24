@@ -241,7 +241,6 @@ async def p_cb(b, cb):
                  msg += f'\n- Req By {usr}\n'
         await cb.message.edit(msg)
 
-
 @Client.on_callback_query(filters.regex(pattern=r'^(play|pause|skip|leave|puse|resume|menu|cls)$'))
 async def m_cb(b, cb):
     global que
