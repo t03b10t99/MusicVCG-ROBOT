@@ -36,6 +36,6 @@
 
 #### Based on Callsmusic-1
 
-### Deploy To Herogay </h4>
+### Installing </h4>
 
 <p align="center"><a href="https://heroku.com/deploy?template=https://github.com/KENZO-404/MusicVCG-ROBOT"><img src="https://img.shields.io/badge/Don't%20Click%20Bro-white?style=flat&logo=heroku" width="210" height="34.45" /></a></p>
