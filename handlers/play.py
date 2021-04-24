@@ -335,11 +335,9 @@ async def m_cb(b, cb):
                     InlineKeyboardButton('⏸', 'puse'),
                     InlineKeyboardButton('▶️', 'resume'),
                     InlineKeyboardButton('⏭', 'skip')
-                
                 ],
                 [
                     InlineKeyboardButton('Playlist 📖', 'playlist'),
-                
                 ],
                 [
                     InlineKeyboardButton("❌ Close",'cls')
@@ -368,7 +366,7 @@ async def m_cb(b, cb):
                 await cb.message.edit((m_chat, qeue), reply_markup=r_ply(the_data))
                 await cb.message.reply_text(f'- Melewati Lagu\n- Sedang Memainkan **{qeue[0][0]}**')
 
-    else:      
+    else:
         if chat_id in callsmusic.pytgcalls.active_calls:
             try:
                 callsmusic.queues.clear(chat_id)
