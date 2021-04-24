@@ -165,7 +165,6 @@ def r_ply(type_):
                 ],
                 [
                     InlineKeyboardButton('Playlist 📖', 'playlist'),
-                
                 ],
                 [
                     InlineKeyboardButton("❌ Close",'cls')
