@@ -327,7 +327,7 @@ async def m_cb(b, cb):
     elif type_ == 'menu':
         stats = updated_stats(cb.message.chat, qeue)
         await cb.answer('Menu opened')
-         marr = InlineKeyboardMarkup(
+            marr = InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton('⏹', 'leave'),
