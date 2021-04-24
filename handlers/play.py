@@ -322,7 +322,7 @@ async def m_cb(b, cb):
             await cb.answer('Music Paused!')
     elif type_ == 'cls':
         await cb.answer('Closed menu')
-        await cb.message.delete()       
+        await cb.message.delete()
 
     elif type_ == 'menu':
         stats = updated_stats(cb.message.chat, qeue)
