@@ -327,20 +327,29 @@ async def m_cb(b, cb):
     elif type_ == 'menu':
         stats = updated_stats(cb.message.chat, qeue)
         await cb.answer('Menu opened')
-            marr = InlineKeyboardMarkup(
+        marr = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton('⏹', 'leave'),
                     InlineKeyboardButton('⏸', 'puse'),
                     InlineKeyboardButton('▶️', 'resume'),
                     InlineKeyboardButton('⏭', 'skip')
+                
                 ],
                 [
-                    InlineKeyboardButton('Playlist 📖', 'playlist'),
+                    InlineKeyboardButton(
+                        text="Sponsored",
+                        url=f"https://kenzo-404.github.io/Lynx-Userbot"),
+                    InlineKeyboardButton("❌",'cls'),
+                    InlineKeyboardButton(
+                        text="Channel",
+                        url=f"https://t.me/FederationSuperGroup")
+
                 ],
-                [
-                    InlineKeyboardButton("❌ Close",'cls')
-                ]
+                [       
+                    InlineKeyboardButton(
+                        text="FAQ Group",
+                        url=f"https://t.me/FSGOpenChat")
+                ]        
             ]
         )
         await cb.message.edit(stats, reply_markup=marr)
