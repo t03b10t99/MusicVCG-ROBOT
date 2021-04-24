@@ -344,13 +344,13 @@ async def m_cb(b, cb):
                     InlineKeyboardButton('Playlist 📖', 'playlist'),
                 
                 ],
-                [       
+                [
                     InlineKeyboardButton("❌ Close",'cls')
-                ]        
+                ]
             ]
         )
-        await cb.message.edit(stats, reply_markup=marr) 
-    elif type_ == 'skip':        
+        await cb.message.edit(stats, reply_markup=marr)
+    elif type_ == 'skip':
         if qeue:
             skip = qeue.pop(0)
         if chat_id not in callsmusic.pytgcalls.active_calls:
@@ -393,7 +393,7 @@ async def play(_, message: Message):
     usar = await USER.get_me()
     wew = usar.id
     for administrator in administrators:
-       if administrator == message.from_user.id:  
+       if administrator == message.from_user.id:
                try:
                    invitelink = await _.export_chat_invite_link(chid)
                except:
@@ -459,14 +459,14 @@ async def play(_, message: Message):
         return
 
     keyboard = InlineKeyboardMarkup(
-            [   
+            [
                 [
                                
                     InlineKeyboardButton('📚 Daftar Lagu', callback_data='playlist'),
                     InlineKeyboardButton('Menu ⏯ ', callback_data='menu')
                 
                 ],
-                [       
+                [
                     InlineKeyboardButton(
                         text="❌ Tutup ❌",
                         callback_data='cls')
@@ -594,12 +594,12 @@ async def deezer(client: Client, message_: Message):
                     InlineKeyboardButton('Menu ⏯ ', callback_data='menu')
                 
                 ],
-                [       
+                [
                     InlineKeyboardButton(
                         text="❌ Tutup ❌",
                         callback_data='cls')
 
-                ]               
+                ]
             ]
         )
     file_path= await converter.convert(wget.download(url))
@@ -652,7 +652,7 @@ async def jiosaavn(client: Client, message_: Message):
     wew = usar.id
 
     for administrator in administrators:
-       if administrator == message_.from_user.id:  
+       if administrator == message_.from_user.id:
                try:
                    invitelink = await client.export_chat_invite_link(chid)
                except:
@@ -721,7 +721,7 @@ async def jiosaavn(client: Client, message_: Message):
                         text="❌ Tutup ❌",
                         callback_data='cls')
 
-                ]                   
+                ]
             ]
         )
     file_path= await converter.convert(wget.download(slink))
@@ -740,7 +740,7 @@ async def jiosaavn(client: Client, message_: Message):
             photo="final.png",
             caption=f"=#️⃣ Sedang Mengantri di Posisi {position}",
         
-        )           
+        )
            
     else:
         await res.edit_text("▶️ Sedang Memutar Lagu...")
