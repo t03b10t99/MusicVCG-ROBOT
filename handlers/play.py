@@ -162,7 +162,6 @@ def r_ply(type_):
                     InlineKeyboardButton('⏸', 'puse'),
                     InlineKeyboardButton('▶️', 'resume'),
                     InlineKeyboardButton('⏭', 'skip')
-                
                 ],
                 [
                     InlineKeyboardButton('Playlist 📖', 'playlist'),
@@ -707,16 +706,13 @@ async def jiosaavn(client: Client, message_: Message):
     keyboard = InlineKeyboardMarkup(
             [
                 [
-                               
                     InlineKeyboardButton('📚 Playlist', callback_data='playlist'),
                     InlineKeyboardButton('Menu ⏯ ', callback_data='menu')
-                
                 ],
                 [
                     InlineKeyboardButton(
                         text="❌ Tutup ❌",
                         callback_data='cls')
-
                 ]
             ]
         )
@@ -735,9 +731,8 @@ async def jiosaavn(client: Client, message_: Message):
             reply_markup=keyboard,
             photo="final.png",
             caption=f"=#️⃣ Sedang Mengantri di Posisi {position}",
-        
         )
-           
+
     else:
         await res.edit_text("▶️ Sedang Memutar Lagu...")
         chat_id = message_.chat.id
