@@ -39,3 +39,15 @@ async def addchannel(client, message):
     await message.reply_text(
             "<b>Assistant Music Baru Saja Bergabung Dengan Obrolan.</b>",
         )
+
+
+@USER.on_message(filters.group & filters.command(["userbotleave"]))
+async def rem(USER, message):
+    try:
+        await USER.leave_chat(message.chat.id)
+    except:  
+        await message.reply_text(
+            f"**@MusicVCGRobot Tidak Dapat Keluar Dari Grup, Mungkin Karena Floodwaits.**"
+            "\n\n**Mohon Kick Secara Manual.**",
+        )
+        return
