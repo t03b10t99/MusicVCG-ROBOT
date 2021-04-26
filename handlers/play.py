@@ -195,7 +195,7 @@ async def ee(client, message):
     if stats:
         await message.reply(stats)
     else:
-        await message.reply('Tidak Ada Instance VCG Yang Berjalan Disini.')
+        await message.reply('Tidak Ada Instansi VCG Yang Berjalan Disini.')
 
 @Client.on_message(
     filters.command("player")
@@ -216,7 +216,7 @@ async def settings(client, message):
         else:
             await message.reply(stats, reply_markup=r_ply('play'))
     else:
-        await message.reply('Tidak Ada Instance VCG Yang Berjalan Disini.')
+        await message.reply('Tidak Ada Instansi VCG Yang Berjalan Disini.')
 
 
 @Client.on_callback_query(filters.regex(pattern=r'^(playlist)$'))
