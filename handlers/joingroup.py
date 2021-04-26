@@ -5,7 +5,7 @@ from pyrogram.types import Chat, Message, User
 from pyrogram.errors import UserAlreadyParticipant
 from helpers.decorators import errors, authorized_users_only
 
-@Client.on_message(filters.group & filters.command(["joinvc"]))
+@Client.on_message(filters.group & filters.command(["joingroup"]))
 @authorized_users_only
 @errors
 async def addchannel(client: USER, message: Message):
@@ -42,7 +42,7 @@ async def addchannel(client: USER, message: Message):
         )
 
 
-@USER.on_message(filters.group & filters.command(["userbotleave"]))
+@USER.on_message(filters.group & filters.command(["leavegroup"]))
 async def rem(client: USER, message: Message):
     try:
         await USER.leave_chat(message.chat.id)
