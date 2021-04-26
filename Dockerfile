@@ -1,13 +1,20 @@
 FROM debian:latest
 
 RUN apt update && apt upgrade -y
-RUN apt install git curl python3-pip ffmpeg -y
-RUN pip3 install -U pip
+RUN apt install --no-cache-dir git curl python3-pip ffmpeg -y
+RUN pip3 install --no-cache-dir -U pip
 RUN curl -sL https://deb.nodesource.com/setup_15.x | bash -
-RUN apt-get install -y nodejs
+RUN apt-get install --no-cache-dir -y nodejs
 RUN npm i -g npm
 RUN mkdir /app/
 WORKDIR /app/
 COPY . /app/
+
 RUN pip3 install -U -r requirements.txt
+
+RUN apt-get install -y ffmpeg opus-tools bpm-tools
+RUN python -m pip install --no-cache-dir --upgrade pip
+RUN python -m pip install --no-cache-dir wheel Pyrogram TgCrypto
+RUN python -m pip install --no-cache-dir pytgcalls ffmpeg-python psutil
+
 CMD python3 main.py
