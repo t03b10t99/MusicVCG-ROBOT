@@ -25,4 +25,5 @@ async def start(_, message: Message):
 /skip - Untuk Menloncati Pemutaran Lagu ke Lagu Berikutnya.
 /end - Untuk Memberhentikan Pemutaran Lagu.
 /userbotjoin - Untuk Mengundang Asisten Music ke Obrolan Suara.
-/adminreset - Untuk Memperbarui Admin List.""")
+/adminreset - Untuk Memperbarui Admin List.
+/admincache - Untuk Me-Refresh Cache Admin Pada Robot.""")
