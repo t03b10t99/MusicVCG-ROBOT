@@ -14,13 +14,17 @@ Silahkan Tekan Tombol » /help """,
             [ 
                 [
                     InlineKeyboardButton(
-                        "My Instagram", url="https://www.instagram.com/si_axeell")
+                        "ᴀxᴇʟ ᴀ.ʟ", url="instagram.com/si_axeell")
+                  ],
+                [
+                    InlineKeyboardButton(
+                        "ᴅʜᴀʀᴍᴀ", url="instgram.com/kadekx._")
                   ],[
                     InlineKeyboardButton(
-                        "FAQ Group", url="https://t.me/FSGOpenChat"
+                        "❓FAQ Group", url="https://t.me/FSGOpenChat"
                     ),
                     InlineKeyboardButton(
-                        "Sponsored", url="https://kenzo-404.github.io/Lynx-Userbot"
+                        "✨Sponsored", url="https://kenzo-404.github.io/Lynx-Userbot"
                     )
                 ]
             ]
