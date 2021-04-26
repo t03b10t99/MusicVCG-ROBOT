@@ -7,10 +7,6 @@ __pycache__
 raw_files
 downloads
 
-# Python
-/venv/
-__pycache__/
-
 # Pyrogram
 /*.py
 !/main.py
