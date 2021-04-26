@@ -1,13 +1,14 @@
 from callsmusic.callsmusic import client as USER
 from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import Chat, Message, User
+
 from pyrogram.errors import UserAlreadyParticipant
 from helpers.decorators import errors, authorized_users_only
 
 @Client.on_message(filters.group & filters.command(["joinvc"]))
 @authorized_users_only
 @errors
-async def addchannel(client, message):
+async def addchannel(client: USER, message: Message):
     chid = message.chat.id
     try:
         invitelink = await client.export_chat_invite_link(chid)
@@ -42,7 +43,7 @@ async def addchannel(client, message):
 
 
 @USER.on_message(filters.group & filters.command(["userbotleave"]))
-async def rem(USER, message):
+async def rem(client: USER, message: Message):
     try:
         await USER.leave_chat(message.chat.id)
     except:  
