@@ -21,3 +21,4 @@ TgCrypto==1.2.2
 ffmpeg-python
 psutil
 pytgcalls==0.0.17
+wheel
