@@ -6,3 +6,18 @@ __pycache__
 .vscode
 raw_files
 downloads
+
+# Python
+/venv/
+__pycache__/
+
+# Pyrogram
+/*.py
+!/main.py
+
+# pytgcalls
+/*.so
+/*.log
+
+# Pycharm
+/.idea/
