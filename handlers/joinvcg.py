@@ -1,7 +1,6 @@
 import asyncio
 import os
 from datetime import datetime
-from pyrogram import Client, filter
 from callsmusic.callsmusic import client as USER
 from helpers.filters import command, other_filters, other_filters2, self_or_contact_filter
 from helpers.vc import mcp
