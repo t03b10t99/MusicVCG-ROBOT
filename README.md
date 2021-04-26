@@ -34,7 +34,7 @@
 - `/end` - stop music play
 
 
-#### Based on Callsmusic-1
+#### Based on Callsmusic-1,DaisyXMusic
 
 ### Installing </h4>
 
