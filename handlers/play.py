@@ -5,7 +5,7 @@ from pyrogram.types import Message, Voice
 from typing import Callable, Coroutine, Dict, List, Tuple, Union
 from callsmusic import callsmusic, queues
 from helpers.admins import get_administrators
-
+from os import path
 import requests
 import aiohttp
 import youtube_dl
@@ -29,7 +29,8 @@ from helpers.errors import DurationLimitError
 from helpers.gets import get_url, get_file_name
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from cache.admins import admins as a
-
+import os
+import aiohttp
 import aiofiles
 import ffmpeg
 from PIL import Image
@@ -39,8 +40,18 @@ from config import que
 from Python_ARQ import ARQ
 import json
 import wget
-
 chat_id = None
+
+
+def cb_admin_check(func: Callable) -> Callable:
+    async def decorator(client, cb):
+        admemes = a.get(cb.message.chat.id)
+        if cb.from_user.id in admemes:
+            return await func(client, cb)
+        else:
+            await cb.answer('You ain\'t allowed!', show_alert=True)
+            return
+    return decorator
 
 
 def transcode(filename):
@@ -49,8 +60,8 @@ def transcode(filename):
 
 # Convert seconds to mm:ss
 def convert_seconds(seconds):
-    seconds = seconds % (600 * 10800)
-    seconds %= 10800
+    seconds = seconds % (96 * 14400)
+    seconds %= 14400
     minutes = seconds // 240
     seconds %= 240
     return "%02d:%02d" % (minutes, seconds)
@@ -121,7 +132,7 @@ async def playlist(client, message):
     by = temp[0][1].mention(style='md')
     msg = "**Now Playing** in {}".format(message.chat.title)
     msg += "\n- "+ now_playing
-    msg += "\n- Req By "+by
+    msg += "\n- Req by "+by
     temp.pop(0)
     if temp:
         msg += '\n\n'
@@ -130,7 +141,7 @@ async def playlist(client, message):
             name = song[0]
             usr = song[1].mention(style='md')
             msg += f'\n- {name}'
-            msg += f'\n- Req By {usr}\n'
+            msg += f'\n- Req by {usr}\n'
     await message.reply_text(msg)       
     
 # ============================= Settings =========================================
@@ -227,7 +238,7 @@ async def p_cb(b, cb):
         by = temp[0][1].mention(style='md')
         msg = "**Sedang Memainkan** in {}".format(cb.message.chat.title)
         msg += "\n- "+ now_playing
-        msg += "\n- Req By "+by
+        msg += "\n- Req by "+by
         temp.pop(0)
         if temp:
              msg += '\n\n'
@@ -236,8 +247,9 @@ async def p_cb(b, cb):
                  name = song[0]
                  usr = song[1].mention(style='md')
                  msg += f'\n- {name}'
-                 msg += f'\n- Req By {usr}\n'
+                 msg += f'\n- Req by {usr}\n'
         await cb.message.edit(msg)
+
 
 @Client.on_callback_query(filters.regex(pattern=r'^(play|pause|skip|leave|puse|resume|menu|cls)$'))
 async def m_cb(b, cb):
@@ -286,7 +298,7 @@ async def m_cb(b, cb):
         by = temp[0][1].mention(style='md')
         msg = "**Sedang Memutar...** di {}".format(cb.message.chat.title)
         msg += "\n- "+ now_playing
-        msg += "\n- Req By "+by
+        msg += "\n- Req by "+by
         temp.pop(0)
         if temp:
              msg += '\n\n'
@@ -295,7 +307,7 @@ async def m_cb(b, cb):
                  name = song[0]
                  usr = song[1].mention(style='md')
                  msg += f'\n- {name}'
-                 msg += f'\n- Req By {usr}\n'
+                 msg += f'\n- Req by {usr}\n'
         await cb.message.edit(msg)
                       
     elif type_ == 'resume':
@@ -338,7 +350,7 @@ async def m_cb(b, cb):
                     InlineKeyboardButton(
                         text="Sponsored",
                         url=f"https://kenzo-404.github.io/Lynx-Userbot"),
-                    InlineKeyboardButton("❌",'cls'),
+                    InlineKeyboardButton("❌ Close",'cls'),
                     InlineKeyboardButton(
                         text="Channel",
                         url=f"https://t.me/FederationSuperGroup")
@@ -389,47 +401,57 @@ async def m_cb(b, cb):
 @Client.on_message(command("play") & other_filters)
 async def play(_, message: Message):
     global que
-    lel = await message.reply("🔄 **Sedang Memproses...**")
+    lel = await message.reply("🔄 **Processing**")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
-    usar = await USER.get_me()
+
+    try:
+        user = await USER.get_me()
+    except:
+        user.first_name =  "helper"
+    usar = user
     wew = usar.id
-    for administrator in administrators:
-       if administrator == message.from_user.id:
-               try:
-                   invitelink = await _.export_chat_invite_link(chid)
-               except:
-                   await lel.edit(
-                       "<b>Mohon Maaf, Tambahkan Saya Sebagai Admin Grup Terlebih Dahulu.</b>",
-                   )
-                   return
+    try:
+        #chatdetails = await USER.get_chat(chid)
+        lmoa = await _.get_chat_member(chid,wew)
+    except:
+           for administrator in administrators:
+                      if administrator == message.from_user.id:  
+                          try:
+                              invitelink = await _.export_chat_invite_link(chid)
+                          except:
+                              await lel.edit(
+                                  "<b>Jadikan Saya Menjadi Admin Terlebih Dahulu.</b>",
+                              )
+                              return
 
-               try:
-                   await USER.join_chat(invitelink)
-                   await lel.edit(
-                       "<b> Assistant Music Telah Bergabung Dengan Obrolan Anda.</b>",
-                   )
+                          try:
+                              await USER.join_chat(invitelink)
+                              await USER.send_message(message.chat.id,"I joined this group for playing music in VC")
+                              await lel.edit(
+                                  "<b>Helper Userbot Telah Join.</b>",
+                              )
 
-               except UserAlreadyParticipant:
-                   pass
-               except Exception as e:
-                   #print(e)
-                   #await lel.edit(
-                   #    f"<b>User {user.first_name} couldn't join your group! Make sure user is not banned in group."
-                   #    "\n\nOr manually add @DaisyXmusic to your Group and try again</b>",
-                   #)
-                   pass
+                          except UserAlreadyParticipant:
+                              pass
+                          except Exception as e:
+                              #print(e)
+                              await lel.edit(
+                                  f"<b>❌ Flood Wait Error ❌ \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
+                                  "\n\nOr manually add @MusicVCGRobot to your Group and try again</b>",
+                              )
+                              pass
     try:
         chatdetails = await USER.get_chat(chid)
-        #lmoa = await _.get_chat_member(chid,wew)
+        #lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            "<i>Helper Assistant Music Tidak Ada Dalam Obrolan Ini, Minta Admin Untuk Mengirim /play Perintah Untuk Pertama Kalinya atau Tambahkan Asistant Secara Manual.</i>"
+            f"<i> {user.first_name} Userbot not in this chat, Ask admin to send /play command for first time or add {user.first_name} manually</i>"
         )
-        return
+        return     
     sender_id = message.from_user.id
     sender_name = message.from_user.first_name
-    await lel.edit("🔎 **Sedang Mencari, Mohon Tunggu Sebentar...**")
+    await lel.edit("🔎 **Finding**")
     sender_id = message.from_user.id
     user_id = message.from_user.id
     sender_name = message.from_user.first_name
@@ -440,13 +462,13 @@ async def play(_, message: Message):
     for i in message.command[1:]:
         query += ' ' + str(i)
     print(query)
-    await lel.edit("🎵 **Sedang Memproses...**")
+    await lel.edit("🎵 **Processing**")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
         url = f"https://youtube.com{results[0]['url_suffix']}"
         #print(results)
-        title = results[0]["title"][:40]
+        title = results[0]["title"][:40]       
         thumbnail = results[0]["thumbnails"][0]
         thumb_name = f'thumb{title}.jpg'
         thumb = requests.get(thumbnail, allow_redirects=True)
@@ -456,21 +478,30 @@ async def play(_, message: Message):
         views = results[0]["views"]
 
     except Exception as e:
-        await lel.edit("Mohon Maaf, Lagu Tidak Ditemukan. Coba Cari Dengan Judul Lagu Yang Lebih Akurat.")
+        await lel.edit("Song not found.Try another song or maybe spell it properly.")
         print(str(e))
         return
 
     keyboard = InlineKeyboardMarkup(
-            [
+            [   
                 [
-                    InlineKeyboardButton('📚 Daftar Lagu', callback_data='playlist'),
+                               
+                    InlineKeyboardButton('📖 Playlist', callback_data='playlist'),
                     InlineKeyboardButton('Menu ⏯ ', callback_data='menu')
-                ],
+                
+                ],                     
                 [
                     InlineKeyboardButton(
-                        text="❌ Tutup ❌",
+                        text="Watch On YouTube 🎬",
+                        url=f"{url}")
+
+                ],
+                [       
+                    InlineKeyboardButton(
+                        text="❌ Close",
                         callback_data='cls')
-                ]
+
+                ]                             
             ]
         )
     requested_by = message.from_user.first_name
