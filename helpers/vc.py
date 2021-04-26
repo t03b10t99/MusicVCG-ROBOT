@@ -2,7 +2,8 @@ import os
 from datetime import datetime
 from pyrogram.types import Message
 from pytgcalls import GroupCall
-
+from callsmusic.callsmusic import client as USER
+from pyrogram.types import Chat, Message, User
 
 class MusicPlayer(object):
     def __init__(self):
@@ -49,5 +50,5 @@ async def network_status_changed_handler(gc: GroupCall, is_connected: bool):
 
 
 @mcp.group_call.on_playout_ended
-async def playout_ended_handler(_, __):
+async def playout_ended_handler(client: USER, message: Message):
     await mcp.skip_current_playing()
