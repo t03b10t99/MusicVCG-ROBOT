@@ -39,7 +39,7 @@ async def pause(_, message: Message):
         await message.reply_text("❌ Tidak Ada Lagu Yang Sedang Diputar.")
     else:
         callsmusic.pytgcalls.pause_stream(message.chat.id)
-        await message.reply_text("▶️ ♬Paused.")
+        await message.reply_text("▶️ ♬ Pause.")
 
 
 @Client.on_message(command("resume") & other_filters)
@@ -54,7 +54,7 @@ async def resume(_, message: Message):
         await message.reply_text("❗ Tidak Ada Lagu Yang Sedang Dipause.")
     else:
         callsmusic.pytgcalls.resume_stream(message.chat.id)
-        await message.reply_text("⏸ ♬Resumed.")
+        await message.reply_text("⏸ ♬ Resume.")
 
 
 @Client.on_message(command("end") & other_filters)
@@ -97,7 +97,8 @@ async def skip(_, message: Message):
         skip = qeue.pop(0)
     if not qeue:
         return
-    await message.reply_text(f'- Dilewati **{skip[0]}**\n- Sedang Memutar **{qeue[0][0]}**')
+    await message.reply_text(f'- Melewati **{skip[0]}**\n- Sedang Memutar **{qeue[0][0]}**')
+
 
 
 @Client.on_message(
@@ -106,3 +107,4 @@ async def skip(_, message: Message):
 @errors
 async def admincache(client, message: Message):
     set(message.chat.id, [member.user for member in await message.chat.get_members(filter="administrators")])
+    #await message.reply_text("✯𝗩𝗖𝗣𝗹𝗮𝘆𝗕𝗼𝘁✯=❇️ Admin cache refreshed!")
