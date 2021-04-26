@@ -16,6 +16,7 @@
 #### For all in group
 
 - `/play <song name>` - play song you requested
+- `/plays` - reply to youtube url or song file to play song
 - `/dplay <song name>` - play song you requested via deezer
 - `/splay <song name>` - play song you requested via jio saavn
 - `/playlist` - Show now playing list
