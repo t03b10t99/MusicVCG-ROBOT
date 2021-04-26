@@ -13,12 +13,12 @@ async def inline(client: Client, query: InlineQuery):
         await client.answer_inline_query(
             query.id,
             results=answers,
-            switch_pm_text="Ketik Nama Video YouTube...",
+            switch_pm_text="Ketik Yang Anda Ingin Kan Untuk Pencarian Video di YouTube...",
             switch_pm_parameter="help",
             cache_time=0
         )
     else:
-        search = VideosSearch(search_query, limit=240)
+        search = VideosSearch(search_query, limit=230)
 
         for result in search.result()["result"]:
             answers.append(
