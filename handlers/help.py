@@ -10,6 +10,7 @@ async def start(_, message: Message):
 
 /play <Judul Lagu>  - Untuk Memutar Lagu Yang Anda Minta Melalui Youtube.
 /dplay <Judul Lagu>  - Untuk Memutar Lagu Yang Anda Minta Melalui Deezer.
+/plays - Untuk Memutar lagu lewat link YouTube atau Lagu biasa (Sudah di Download)
 /playlist - Untuk Menampilkan Daftar Putar Lagu.
 /song <Judul Lagu> - Untuk Mendownload Lagu di YouTube.
 /video <Judul Lagu> - Untuk Mendownload Video di YouTube Secara Detail.
@@ -24,6 +25,7 @@ async def start(_, message: Message):
 /resume - Untuk Melanjutkan Pemutaran Lagu Yang Telah Dipause.
 /skip - Untuk Menloncati Pemutaran Lagu ke Lagu Berikutnya.
 /end - Untuk Memberhentikan Pemutaran Lagu.
-/userbotjoin - Untuk Mengundang Asisten Music ke Obrolan Suara.
+/joingroup - Untuk Mengundang Asisten Music ke Obrolan Suara.
+/leavegroup - Untuk Menendang Asisten Music dari Obrolan Suara.
 /adminreset - Untuk Memperbarui Admin List.
 /admincache - Untuk Me-Refresh Cache Admin Pada Robot.""")
