@@ -10,8 +10,6 @@ RUN tar xzf Python-3.9.4.tgz
 RUN cd Python-3.9.4 \
     && ./configure --enable-optimizations
 
-RUN apt install git curl curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py python3.9 get-pip.py
-RUN pip3 install -U pip
 RUN pip3 install pytgcalls -U
 RUN curl -sL https://deb.nodesource.com/setup_15.x | bash -
 RUN apt-get install -y nodejs
