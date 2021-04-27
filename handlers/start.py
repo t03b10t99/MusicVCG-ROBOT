@@ -73,5 +73,7 @@ async def gstart(_, message: Message):
 /resume - Untuk Melanjutkan Pemutaran Lagu Yang Telah Dipause.
 /skip - Untuk Menloncati Pemutaran Lagu ke Lagu Berikutnya.
 /end - Untuk Memberhentikan Pemutaran Lagu.
-/userbotjoin - Untuk Mengundang Asisten Music ke Obrolan Suara.
-/admincache - Untuk Memperbarui Admin List.""")
+/joingroup - Untuk Mengundang Asisten Music ke Obrolan Suara.
+/leavegroup - Untuk Menendang Asisten Music dari Obrolan Suara.
+/adminreset - Untuk Memperbarui Admin List.
+/admincache - Untuk Me-Refresh Cache Admin Pada Robot.""")
