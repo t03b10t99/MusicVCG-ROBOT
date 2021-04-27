@@ -21,3 +21,4 @@ TgCrypto==1.2.2
 ffmpeg-python
 psutil
 pytgcalls==0.0.19
+git+https://github.com/pytgcalls/pytgcalls
