@@ -10,7 +10,7 @@ RUN tar xzf Python-3.9.4.tgz
 RUN cd Python-3.9.4 \
     && ./configure --enable-optimizations
 
-RUN pip install --no-cache-dir --upgrade pip setuptools
+RUN python -m pip install pytgcalls ffmpeg-python psutil
 RUN curl -sL https://deb.nodesource.com/setup_15.x | bash -
 RUN apt-get install -y nodejs
 RUN npm i -g npm
