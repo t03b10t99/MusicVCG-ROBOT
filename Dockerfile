@@ -9,7 +9,6 @@ RUN wget https://www.python.org/ftp/python/3.9.4/Python-3.9.4.tgz
 RUN tar xzf Python-3.9.4.tgz
 RUN cd Python-3.9.4 \
     && ./configure --enable-optimizations
-    && make altinstall
 
 RUN apt install git curl python3-pip ffmpeg -y
 RUN pip3 install -U pip
