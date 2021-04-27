@@ -7,8 +7,8 @@ RUN apt install wget build-essential libreadline-gplv2-dev libncursesw5-dev \
 
 RUN wget https://www.python.org/ftp/python/3.9.4/Python-3.9.4.tgz
 RUN tar xzf Python-3.9.4.tgz
-RUN cd Python-3.9.4
-RUN ./configure --enable-optimizations
+RUN cd Python-3.9.4 \
+    && ./configure --enable-optimizations
 RUN make altinstall
 
 RUN apt install git curl python3-pip ffmpeg -y
