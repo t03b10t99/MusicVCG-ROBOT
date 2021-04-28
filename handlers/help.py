@@ -10,14 +10,15 @@ async def start(_, message: Message):
 
 /play <Judul Lagu>  - Untuk Memutar Lagu Yang Anda Minta Melalui Youtube.
 /dplay <Judul Lagu>  - Untuk Memutar Lagu Yang Anda Minta Melalui Deezer.
-/plays - Untuk Memutar lagu lewat link YouTube atau Lagu biasa (Sudah di Download)
+/plays <Link Youtube / Direct> - Untuk Memutar lagu lewat link YouTube atau Lagu biasa (Sudah di Download)
 /playlist - Untuk Menampilkan Daftar Putar Lagu.
 /song <Judul Lagu> - Untuk Mendownload Lagu di YouTube.
-/video <Judul Lagu> - Untuk Mendownload Video di YouTube Secara Detail.
+/video atau /vsong <Judul Lagu> - Untuk Mendownload Video di YouTube Secara Detail.
 /deezer <Judul Lagu> - Untuk Mendownload Lagu Dari Deezer.
 /saavn <Judul Lagu> - Untuk Mendownload Lagu Dari Website Saavn.
 /search <Judul Lagu> - Untuk Mencari Video di YouTube Secara Detail.
-
+/current - Untuk Mengecek Antrian dan Juga Siapa yang Me-Request Lagu Tersebut.
+/player - Untuk Memudahkan Anda Dalam Mengelola Robot.
 
 • Perintah Untuk Admin Dalam Group :
 
