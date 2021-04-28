@@ -550,50 +550,59 @@ async def play(_, message: Message):
 )
 async def deezer(client: Client, message_: Message):
     global que
-    lel = await message_.reply("🔄 **Sedang Memproses Lagu...**")
+    lel = await message_.reply("🔄 **Processing...**\n Mohon Tunggu Sebentar.")
     administrators = await get_administrators(message_.chat)
     chid = message_.chat.id
-    usar = await USER.get_me()
+    try:
+        user = await USER.get_me()
+    except:
+        user.first_name =  "MusicVCGRobot"
+    usar = user
     wew = usar.id
-    for administrator in administrators:
-       if administrator == message_.from_user.id:
-               try:
-                   invitelink = await client.export_chat_invite_link(chid)
-               except:
-                   await lel.edit(
-                       "<b>Tambahkan Saya Sebagai Admin Terlebih Dahulu.</b>",
-                   )
-                   return
+    try:
+        #chatdetails = await USER.get_chat(chid)
+        lmoa = await client.get_chat_member(chid,wew)
+    except:
+           for administrator in administrators:
+                      if administrator == message_.from_user.id:  
+                          try:
+                              invitelink = await client.export_chat_invite_link(chid)
+                          except:
+                              await lel.edit(
+                                  "<b>Tambahkan Saya Menjadi Admin Terlebih Dahulu.</b>",
+                              )
+                              return
 
-               try:
-                   await USER.join_chat(invitelink)
-                   await lel.edit(
-                       "<b>Robot Telah Bergabung Kedalam Group.</b>",
-                   )
+                          try:
+                              await USER.join_chat(invitelink)
+                              await USER.send_message(message_.chat.id,"Saya Bergabung Dengan Group ini Untuk Memainkan Musik di VCG.")
+                              await lel.edit(
+                                  "<b>Robot Telah Bergabung Kedalam Group.</b>",
+                              )
 
-               except UserAlreadyParticipant:
-                   pass
-               except Exception as e:
-                   #print(e)
-                   await lel.edit(
-                                  f"<b>❌ Flood Wait Error ❌ \n {user.first_name} Tidak Dapat Bergabung Dengan Grup Anda Karena Banyaknya Permintaan Untuk Assistant Saya. Pastikan @AssistantMusicVCGRobot Tidak Dilarang Didalam Group."
+                          except UserAlreadyParticipant:
+                              pass
+                          except Exception as e:
+                              #print(e)
+                              await lel.edit(
+                                  f"<b>🔴 Flood Wait Error 🔴 \n {user.first_name} Tidak Dapat Bergabung Dengan Grup Anda Karena Banyaknya Permintaan Untuk Assistant Saya. Pastikan @AssistantMusicVCGRobot Tidak Dilarang Didalam Group."
                                   "\n\nAtau Tambahkan @AssistantMusicVCGRobot ke Grup Anda Secara Manual dan Coba Lagi.</b>",
-                   )
-                   pass
+                              )
+                              pass
     try:
         chatdetails = await USER.get_chat(chid)
         #lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            "<i>Assistant Music Tidak Ada Dalam Obrolan Ini, Minta Admin Untuk Mengirim /play Perintah Untuk Pertama Kalinya atau Tambahkan Asistant Secara Manual.</i>"
+            f"<i> {user.first_name} Sedang Tidak Dalam Obrolan Ini, Minta Kepada Admin Untuk Menekan » /joingroup Untuk Pertama Kalinya atau Tambahkan {user.first_name} Secara Manual.</i>"
         )
-        return
-    requested_by = message_.from_user.first_name
-    chat_id = message_.chat.id
+        return                            
+    requested_by = message_.from_user.first_name   
+
     text = message_.text.split(" ", 1)
     queryy = text[1]
     res = lel
-    await res.edit(f"🚀 Mencari Lagu `{queryy}` Di Deezer..")
+    await res.edit(f"Mencari Lagu `{queryy}` Di Deezer")
     try:
         arq = ARQ("https://thearq.tech")
         r = await arq.deezer(query=queryy, limit=1)
@@ -602,36 +611,37 @@ async def deezer(client: Client, message_: Message):
         thumbnail = r[0]["thumbnail"]
         artist = r[0]["artist"]
         url = r[0]["url"]
-
-    except Exception as e:
+    except:
         await res.edit(
-            "Tidak Ditemukan Secara Harafiah, Anda Harus Menggunakan Bahasa Inggris Dengan Benar!"
+            "Lagu Tidak Dapat Ditemukan, Anda Harus Menggunakan Ejaan Dengan Benar!"
         )
-        print(str(e))
         is_playing = False
         return
     keyboard = InlineKeyboardMarkup(
-            [
-                [
-                               
-                    InlineKeyboardButton('📚 Daftar lagu', callback_data='playlist'),
-                    InlineKeyboardButton('Menu ⏯ ', callback_data='menu')
-                
-                ],
-                [
-                    InlineKeyboardButton(
-                        text="❌ Tutup ❌",
-                        callback_data='cls')
+         [   
+             [
+                 InlineKeyboardButton('📖 Playlist', callback_data='playlist'),
+                 InlineKeyboardButton('Menu ⏯ ', callback_data='menu')     
+             ],                     
+             [
+                 InlineKeyboardButton(
+                     text="Listen On Deezer 🎬",
+                     url=f"{url}")
 
-                ]
-            ]
-        )
+             ],
+             [       
+                 InlineKeyboardButton(
+                     text="❌ Close",
+                     callback_data='cls')
 
-    requested_by = message_.from_user.first_name
-    await generate_cover(requested_by, title, duration, thumbnail, artist)
-    file_path = await converter.convert(wget.download(url))
-
+            ]                      
+         ]
+     )
+    file_path= await converter.convert(wget.download(url))
+    await res.edit("Generating Thumbnail")
+    await generate_cover(requested_by, title, artist, duration, thumbnail)
     if message_.chat.id in callsmusic.pytgcalls.active_calls:
+        await res.edit("adding in queue")
         position = await queues.put(message_.chat.id, file=file_path)       
         qeue = que.get(message_.chat.id)
         s_name = title
@@ -639,13 +649,9 @@ async def deezer(client: Client, message_: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        await res.reply_photo(
-        caption=f"#️⃣ Sedang Mengantri di Posisi {position}.",
-        reply_markup=keyboard)
-        os.remove("final.png")
-        return await res.delete()
+        await res.edit_text(f"MusicVCGRobot = #️⃣ Antrian Di Posisi {position}")
     else:
-        await res.edit_text("▶️ Sedang Memutar Lagu...")
+        await res.edit_text("MusicVCGRobot = ▶️ Playing.....")
         chat_id = message_.chat.id
         que[chat_id] = []
         qeue = que.get(message_.chat.id)
@@ -655,15 +661,16 @@ async def deezer(client: Client, message_: Message):
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         callsmusic.pytgcalls.join_group_call(message_.chat.id, file_path)
-        await res.reply_photo(
-        photo="final.png",
+
+    await res.delete()
+
+    m = await client.send_photo(
+        chat_id=message_.chat.id,
         reply_markup=keyboard,
-        caption="▶️ **Sedang Memutar.**\n\n Lagu Permintaan Dari {}".format(
-        message_.from_user.mention()
-        ),
-    )
-        os.remove("final.png")
-        return await res.delete()
+        photo="final.png",
+        caption=f"Sedang Memutar [{title}]({url}) Via Deezer"
+    ) 
+    os.remove("final.png")
 
 
 @Client.on_message(
@@ -673,7 +680,7 @@ async def deezer(client: Client, message_: Message):
 )
 async def jiosaavn(client: Client, message_: Message):
     global que
-    lel = await message_.reply("🔄 **Sedang Memprosess...**")
+    lel = await message_.reply("🔄 **Sedang Memprosess...**\n Mohon Tunggu Sebentar.")
     administrators = await get_administrators(message_.chat)
     chid = message_.chat.id
     usar = await USER.get_me()
