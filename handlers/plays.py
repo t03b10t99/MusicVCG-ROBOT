@@ -56,7 +56,7 @@ async def play(_, message: Message):
     if audio:
         if round(audio.duration / 240) > DURATION_LIMIT:
             raise DurationLimitError(
-                f"❌ Videos longer than {DURATION_LIMIT} minute(s) aren't allowed to play!"
+                f"❌ Video Yang Lebih Lama Dari Durasi {DURATION_LIMIT} minute(s) Tidak Diizinkan Untuk Diputar!"
             )
 
         file_name = get_file_name(audio)
@@ -67,17 +67,17 @@ async def play(_, message: Message):
     elif url:
         file_path = await converter.convert(youtube.download(url))
     else:
-        return await lel.edit_text("❗ You did not give me anything to play!")
+        return await lel.edit_text("Anda Tidak Memberi Saya Apapun Untuk Dimainkan, Silahkan Reply direct!")
 
     if message.chat.id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(message.chat.id, file=file_path)
-        await lel.edit(f"#⃣ **Queued** at position {position}!")
+        await lel.edit(f"#⃣ **Sedang Mengantri** Di Posisi {position}!")
     else:
         callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
         await message.reply_photo(
         photo="https://telegra.ph/file/516548bbb926a87fa243c.jpg",
         reply_markup=keyboard,
-        caption="▶️ **Playing** here the song requested by {}!".format(
+        caption="▶️ **Sedang Memutar.**\n\n Lagu Permintaan Dari {}!".format(
         message.from_user.mention()
         ),
     )
