@@ -589,15 +589,7 @@ async def deezer(client: Client, message_: Message):
         )
         return
     requested_by = message_.from_user.first_name
-    try:
-        #chatdetails = await USER.get_chat(chid)
-        lmoa = await client.get_chat_member(chid,wew)
-    except:
-        await lel.reply(
-            f"<i> {user.first_name} Sedang Tidak Dalam Obrolan Ini, Minta Kepada Admin Untuk Menekan » /joingroup Untuk Pertama Kalinya atau Tambahkan {user.first_name} Secara Manual.</i>"
-        )
-        pass
-
+    chat_id=message_.chat.id
     text = message_.text.split(" ", 1)
     queryy = text[1]
     res = lel
@@ -610,10 +602,12 @@ async def deezer(client: Client, message_: Message):
         thumbnail = r[0]["thumbnail"]
         artist = r[0]["artist"]
         url = r[0]["url"]
-    except:
+
+    except Exception as e:
         await res.edit(
             "Tidak Ditemukan Secara Harafiah, Anda Harus Menggunakan Bahasa Inggris Dengan Benar!"
         )
+        print(str(e))
         is_playing = False
         return
     keyboard = InlineKeyboardMarkup(
@@ -657,7 +651,7 @@ async def deezer(client: Client, message_: Message):
         qeue.append(appendable)
         callsmusic.pytgcalls.join_group_call(message_.chat.id, file_path)
 
-    await res.delete()
+        return await res.delete()
 
     m = await client.send_photo(
         chat_id=message_.chat.id,
@@ -665,8 +659,8 @@ async def deezer(client: Client, message_: Message):
         photo="final.png",
         caption=f"#️⃣ Sedang Mengantri di Posisi {position}.)."
     ) 
-    os.remove("final.png")
-
+        os.remove("final.png")
+        return await res.delete()
 
 @Client.on_message(
     filters.command("splay")
@@ -787,6 +781,7 @@ async def jiosaavn(client: Client, message_: Message):
         reply_markup=keyboard,
         photo="final.png",
         caption=f"🎧 Memutar Lagu {sname} Via Jiosaavn",
-        
+
     )
-    os.remove("final.png")
+         os.remove("final.png")
+         return await lel.delete()
