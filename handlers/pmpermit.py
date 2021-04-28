@@ -12,8 +12,8 @@ async def pmPermit(client: USER, message: Message):
                                   \n\n 📑 **Rules :**\
                                   \n • Supaya Tidak ❌Error, Jangan Melakukan Spam Request Lagu Terlalu Banyak.\
                                   \n\n **Cara Mengundang :** Tambahkan @MusicVCGRobot Terlebih Dahulu, Lalu Jadikan Admin. Jika Telah Menjadi Admin, Undang Saya Dengan Cara \n 1. Ketik /joingroup Lalu Enter. \n 2. Tambahkan @AssistantMusicVCGRobot Secara Manual.\
-                                  \n **Cara Penggunaan :** Ketik /help Lalu Enter.
-                                  \n\n Berikut adalah Pembahasan Mengenai MusicVCGRobot, Untuk Mendapatkan Info Terupdate Silahkan Kunjungi @InfoUpdateMusicVCGRobot , \n Sekian dan Terimakasih 🙏
+                                  \n **Cara Penggunaan :** Ketik /help Lalu Enter.\
+                                  \n\n Berikut adalah Pembahasan Mengenai MusicVCGRobot, Untuk Mendapatkan Info Terupdate Silahkan Kunjungi @InfoUpdateMusicVCGRobot , \n Sekian dan Terimakasih 🙏\
                                   \n\n ⛑ **Contributors :** @SyndicateTwenty4 & @Devilsangry \
                                   \n **Sponsored :** [⚡Lynx-Userbot⚡](https://kenzo-404.github.io/Lynx-Userbot)\
                                   \n **Instagram :** [Axel](instagram.com/si_axeell) & [Dharma](instagram.com/kadekx._)\
