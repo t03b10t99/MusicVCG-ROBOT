@@ -38,7 +38,7 @@ Silahkan Tekan Tombol » /help """,
    )
 
 @Client.on_message(filters.command("online") & ~filters.private & ~filters.channel)
-async def gstart(_, message: Message):
+async def online(_, message: Message):
       await message.reply_text("""⚡ MusicVCG-ROBOT Online ⚡""",
       reply_markup=InlineKeyboardMarkup(
             [
@@ -56,13 +56,13 @@ async def gstart(_, message: Message):
 
 
 @Client.on_message(filters.command("reload") & ~filters.private & ~filters.channel)
-async def gstart(_, message: Message):
+async def reload(_, message: Message):
       await message.reply_text("""🚀Music VCG-ROBOT Sedang Online"""
    )
 
 
 @Client.on_message(filters.command("help") & ~filters.private & ~filters.channel)
-async def gstart(_, message: Message):
+async def helps(_, message: Message):
       await message.reply_text("""Menu Bantuan\nDari **MusicVCGRobot**""",
       reply_markup=InlineKeyboardMarkup(
             [
@@ -76,7 +76,7 @@ async def gstart(_, message: Message):
 
 
 @Client.on_message(filters.command("repo") & ~filters.private & ~filters.channel)
-async def gstart(_, message: Message):
+async def repo(_, message: Message):
       await message.reply_text("""Repository :""",
       reply_markup=InlineKeyboardMarkup(
             [
