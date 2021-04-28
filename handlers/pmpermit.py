@@ -14,7 +14,7 @@ async def pmPermit(client: USER, message: Message):
                                   \n\n **Cara Mengundang :** Tambahkan @MusicVCGRobot Terlebih Dahulu, Lalu Jangan Lupa Jadikan Admin. Jika Telah Menjadi Admin, Undang Saya Dengan Cara : \n 1. Ketik /joingroup Lalu Enter. \n 2. Atau Tambahkan @AssistantMusicVCGRobot Secara Manual.\
                                   \n\n **Cara Penggunaan :** Ketik /help di @MusicVCGRobot Lalu Enter, Atau Anda Juga Bisa Ke @InfoMusicRobot.\
                                   \n\n Berikut adalah Pembahasan Mengenai MusicVCGRobot, Untuk Mendapatkan Info Terupdate Silahkan Kunjungi @InfoMusicRobot,\n😊 Sekian dan Terimakasih 🙏\
-                                  \n\n ⛑ **Contributors :** [Axel](t.me/SyndicateTwenty4) & [Dharma](t.me/Devilsangry)\
+                                  \n\n**Contributors :** @SyndicateTwenty4 & @Devilsangry\
                                   \n **Instagram :** [Axel](instagram.com/si_axeell) & [Dharma](instagram.com/kadekx._)\
                                   \n **Sponsored :** [⚡Lynx-Userbot⚡](https://kenzo-404.github.io/Lynx-Userbot)\
                                   \n **Powered By :** [Federation Super Group](https://t.me/FederationSuperGroup)\n\n")
