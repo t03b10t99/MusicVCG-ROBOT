@@ -7,8 +7,13 @@ from config import BOT_NAME as bn
 async def start(_, message: Message):
     await message.reply_text(
         f"""⚡ Selamat Datang Di Room Music Robot⚡
-Music VCG-ROBOT adalah Project Yang Dirancang Untuk Memutar Sebuah Lagu, Secara Sesederhana Mungkin, Music Dalam Group anda melalui obrolan suara yang baru diperkenalkan oleh Telegram.
-🤔 Bagaimana Cara Menggunakannya ? 
+
+Music VCG-ROBOT adalah Project Yang Dirancang Untuk Memutar Sebuah Lagu, Secara Sesederhana Mungkin. Robot ini Dapat Memutar Music Dalam Group Anda Melalui Obrolan Suara Yang Baru Diperkenalkan Oleh Telegram.
+Untuk Informasi Terupdate Silahkan Kunjungi @InfoUpdateMusicVCGRobot
+Jika Disini Kurang Penjelasan, Silahkan Chat @AssistantMusicVCGRobot
+
+🤔 Bagaimana Cara Menggunakannya ?
+
 Silahkan Tekan Tombol » /help """,
         reply_markup=InlineKeyboardMarkup(
             [ 
@@ -60,12 +65,15 @@ async def gstart(_, message: Message):
 
 /play <Judul Lagu>  - Untuk Memutar Lagu Yang Anda Minta Melalui Youtube.
 /dplay <Judul Lagu>  - Untuk Memutar Lagu Yang Anda Minta Melalui Deezer.
+/plays <Link Youtube / Direct> - Untuk Memutar lagu lewat link YouTube atau Lagu biasa (Sudah di Download)
 /playlist - Untuk Menampilkan Daftar Putar Lagu.
 /song <Judul Lagu> - Untuk Mendownload Lagu di YouTube.
-/video <Judul Lagu> - Untuk Mendownload Video di YouTube Secara Detail.
+/video atau /vsong <Judul Lagu> - Untuk Mendownload Video di YouTube Secara Detail.
 /deezer <Judul Lagu> - Untuk Mendownload Lagu Dari Deezer.
 /saavn <Judul Lagu> - Untuk Mendownload Lagu Dari Website Saavn.
 /search <Judul Lagu> - Untuk Mencari Video di YouTube Secara Detail.
+/current - Untuk Mengecek Antrian dan Juga Siapa yang Me-Request Lagu Tersebut.
+/player - Untuk Memudahkan Anda Dalam Mengelola Robot.
 
 • Berikut Adalah Perintah Untuk Admin Group :
 
