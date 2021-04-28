@@ -589,7 +589,7 @@ async def deezer(client: Client, message_: Message):
         )
         return
     requested_by = message_.from_user.first_name
-    chat_id=message_.chat.id
+    chat_id = message_.chat.id
     text = message_.text.split(" ", 1)
     queryy = text[1]
     res = lel
@@ -626,11 +626,12 @@ async def deezer(client: Client, message_: Message):
                 ]
             ]
         )
-    file_path= await converter.convert(wget.download(url))
-    await res.edit("Generating Thumbnail")
-    await generate_cover(requested_by, title, artist, duration, thumbnail)
+
+    requested_by = message_.from_user.first_name
+    await generate_cover(requested_by, title, views, duration, thumbnail)
+    file_path = await converter.convert(wget.download(url))
+
     if message_.chat.id in callsmusic.pytgcalls.active_calls:
-        await res.edit("adding in queue")
         position = await queues.put(message_.chat.id, file=file_path)       
         qeue = que.get(message_.chat.id)
         s_name = title
@@ -638,7 +639,11 @@ async def deezer(client: Client, message_: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        await res.edit_text(f"Sedang Memutar [{title}]({url}) Via Deezer.")
+        await res.reply_photo(
+        caption=f"#️⃣ Sedang Mengantri di Posisi {position}.",
+        reply_markup=keyboard)
+        os.remove("final.png")
+        return await res.delete()
     else:
         await res.edit_text("▶️ Sedang Memutar Lagu...")
         chat_id = message_.chat.id
@@ -650,16 +655,15 @@ async def deezer(client: Client, message_: Message):
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         callsmusic.pytgcalls.join_group_call(message_.chat.id, file_path)
-
-        return await res.delete()
-
-    m = await client.send_photo(
-        chat_id=message_.chat.id,
-        reply_markup=keyboard,
+        await res.reply_photo(
         photo="final.png",
-        caption=f"#️⃣ Sedang Mengantri di Posisi {position}.)."
+        reply_markup=keyboard,
+        caption="▶️ **Sedang Memutar.**\n\n Lagu Permintaan Dari {}".format(
+        message_.from_user.mention()
+        ),
     )
         os.remove("final.png")
+        return await res.delete()
 
 
 @Client.on_message(
