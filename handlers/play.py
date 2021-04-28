@@ -578,8 +578,8 @@ async def deezer(client: Client, message_: Message):
                    await lel.edit(
                                   f"<b>❌ Flood Wait Error ❌ \n {user.first_name} Tidak Dapat Bergabung Dengan Grup Anda Karena Banyaknya Permintaan Untuk Assistant Saya. Pastikan @AssistantMusicVCGRobot Tidak Dilarang Didalam Group."
                                   "\n\nAtau Tambahkan @AssistantMusicVCGRobot ke Grup Anda Secara Manual dan Coba Lagi.</b>",
-                              )
-                              pass
+                   )
+                   pass
     try:
         chatdetails = await USER.get_chat(chid)
         #lmoa = await client.get_chat_member(chid,wew)
@@ -704,8 +704,8 @@ async def jiosaavn(client: Client, message_: Message):
                    await lel.edit(
                                   f"<b>❌ Flood Wait Error ❌ \n {user.first_name} Tidak Dapat Bergabung Dengan Grup Anda Karena Banyaknya Permintaan Untuk Assistant Saya. Pastikan @AssistantMusicVCGRobot Tidak Dilarang Didalam Group."
                                   "\n\nAtau Tambahkan @AssistantMusicVCGRobot ke Grup Anda Secara Manual dan Coba Lagi.</b>",
-                              )
-                              pass
+                   )
+                   pass
     try:
         chatdetails = await USER.get_chat(chid)
         #lmoa = await client.get_chat_member(chid,wew)
