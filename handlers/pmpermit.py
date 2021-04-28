@@ -6,11 +6,16 @@ from pyrogram.types import Chat, Message, User
 @USER.on_message(filters.text & filters.private & ~filters.me & ~filters.bot)
 async def pmPermit(client: USER, message: Message):
   await USER.send_message(message.chat.id,
-                                  f"Haii, Saya adalah **Layanan Asisten Musik.\
-                                  \n-Silahkan Tekan /Start Ke @MusicVCGRobot**\
-                                  \n 📑 **Rules :**\
-                                  \n- Supaya Tidak ❌ Error ❌, Jangan Melakukan Spam Request Lagu.\
-                                  \n 👉 **KIRIM LINK UNDANGAN GROUP ATAU NAMA PENGGUNA JIKA ASSISTANT MUSIC TIDAK DAPAT BERGABUNG DENGAN GRUP ANDA.**\
-                                  \n ⛑ **Contributors :** @SyndicateTwenty4 & @Devilsangry - **Sponsored :** [⚡Lynx-Userbot⚡](https://kenzo-404.github.io/Lynx-Userbot)\
-                                  \n 🚀 Instagram : [Axel](instagram.com/si_axeell) & [Dharma](instagram.com/kadekx._)\n\n")
+                                  f"Hai Selamat Datang di Room Chat Music Assistant Robot, Saya adalah Layanan Asisten Musik dari @MusicVCGRobot.\
+                                  \n\n• Silahkan Tekan /start Ke @MusicVCGRobot\
+                                  \n Dan Jangan Lupa Membaca Rules Dibawah Ini.\
+                                  \n\n 📑 **Rules :**\
+                                  \n • Supaya Tidak ❌Error, Jangan Melakukan Spam Request Lagu Terlalu Banyak.\
+                                  \n\n **Cara Mengundang :** Tambahkan @MusicVCGRobot Terlebih Dahulu, Lalu Jadikan Admin. Jika Telah Menjadi Admin, Undang Saya Dengan Cara \n 1. Ketik /joingroup Lalu Enter. \n 2. Tambahkan @AssistantMusicVCGRobot Secara Manual.\
+                                  \n **Cara Penggunaan :** Ketik /help Lalu Enter.
+                                  \n\n Berikut adalah Pembahasan Mengenai MusicVCGRobot, Untuk Mendapatkan Info Terupdate Silahkan Kunjungi @InfoUpdateMusicVCGRobot , \n Sekian dan Terimakasih 🙏
+                                  \n\n ⛑ **Contributors :** @SyndicateTwenty4 & @Devilsangry \
+                                  \n **Sponsored :** [⚡Lynx-Userbot⚡](https://kenzo-404.github.io/Lynx-Userbot)\
+                                  \n **Instagram :** [Axel](instagram.com/si_axeell) & [Dharma](instagram.com/kadekx._)\
+                                  \n **Powered By :** [Federation Super Group](https://t.me/FederationSuperGroup)\n\n")
   return
