@@ -496,6 +496,10 @@ async def play(_, message: Message):
                         url=f"{url}")
 
                 ],
+                [
+                    InlineKeyboardButton(
+                        "• Info Help •", url="t.me/InfoMusicRobot/10")
+                ],
                 [       
                     InlineKeyboardButton(
                         text="❌ Close",
