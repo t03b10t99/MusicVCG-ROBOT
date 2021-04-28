@@ -352,7 +352,7 @@ async def m_cb(b, cb):
                         url=f"https://kenzo-404.github.io/Lynx-Userbot"),
                     InlineKeyboardButton("❌ Close",'cls'),
                     InlineKeyboardButton(
-                        text="Channel",
+                        text="Powered By",
                         url=f"https://t.me/FederationSuperGroup")
 
                 ],
