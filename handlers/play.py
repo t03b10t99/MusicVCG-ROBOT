@@ -427,9 +427,9 @@ async def play(_, message: Message):
 
                           try:
                               await USER.join_chat(invitelink)
-                              await USER.send_message(message.chat.id,"I joined this group for playing music in VC")
+                              await USER.send_message(message.chat.id,"Saya Bergabung Dengan Group ini Untuk Memainkan Musik di VCG.")
                               await lel.edit(
-                                  "<b>Helper Userbot Telah Join.</b>",
+                                  "<b>Robot Telah Bergabung Kedalam Group.</b>",
                               )
 
                           except UserAlreadyParticipant:
@@ -437,8 +437,8 @@ async def play(_, message: Message):
                           except Exception as e:
                               #print(e)
                               await lel.edit(
-                                  f"<b>❌ Flood Wait Error ❌ \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
-                                  "\n\nOr manually add @MusicVCGRobot to your Group and try again</b>",
+                                  f"<b>❌ Flood Wait Error ❌ \n {user.first_name} Tidak Dapat Bergabung Dengan Grup Anda Karena Banyaknya Permintaan Untuk Assistant Saya. Pastikan @AssistantMusicVCGRobot Tidak Dilarang Didalam Group."
+                                  "\n\nAtau Tambahkan @AssistantMusicVCGRobot ke Grup Anda Secara Manual dan Coba Lagi.</b>",
                               )
                               pass
     try:
@@ -446,7 +446,7 @@ async def play(_, message: Message):
         #lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            f"<i> {user.first_name} Userbot not in this chat, Ask admin to send /play command for first time or add {user.first_name} manually</i>"
+            f"<i> {user.first_name} Sedang Tidak Dalam Obrolan Ini, Minta Kepada Admin Untuk Menekan » /joingroup Untuk Pertama Kalinya atau Tambahkan {user.first_name} Secara Manual.</i>"
         )
         return     
     sender_id = message.from_user.id
@@ -478,7 +478,7 @@ async def play(_, message: Message):
         views = results[0]["views"]
 
     except Exception as e:
-        await lel.edit("Song not found.Try another song or maybe spell it properly.")
+        await lel.edit("Lagu Tidak Ditemukan. Coba Lagu Lain atau Coba Mengeja Judul Lagu Dengan Benar.")
         print(str(e))
         return
 
@@ -535,7 +535,7 @@ async def play(_, message: Message):
         await message.reply_photo(
         photo="final.png",
         reply_markup=keyboard,
-        caption="▶️ **Sedang Memutar.** Lagu Permintaan Dari {}".format(
+        caption="▶️ **Sedang Memutar.**\n\n Lagu Permintaan Dari {}".format(
         message.from_user.mention()
         ),
     )
@@ -550,7 +550,7 @@ async def play(_, message: Message):
 )
 async def deezer(client: Client, message_: Message):
     global que
-    lel = await message_.reply("🔄 **Sedang Memproses...**")
+    lel = await message_.reply("🔄 **Sedang Memproses Lagu...**")
     administrators = await get_administrators(message_.chat)
     chid = message_.chat.id
     usar = await USER.get_me()
@@ -568,24 +568,24 @@ async def deezer(client: Client, message_: Message):
                try:
                    await USER.join_chat(invitelink)
                    await lel.edit(
-                       "<b>Helper Assistant Music Telah Bergabung Kedalam Obrolan.</b>",
+                       "<b>Robot Telah Bergabung Kedalam Group.</b>",
                    )
 
                except UserAlreadyParticipant:
                    pass
                except Exception as e:
                    #print(e)
-                   #await lel.edit(
-                   #    f"<b>User {user.first_name} couldn't join your group! Make sure user is not banned in group."
-                   #    "\n\nOr manually add @DaisyXmusic to your Group and try again</b>",
-                   #)
-                   pass
+                   await lel.edit(
+                                  f"<b>❌ Flood Wait Error ❌ \n {user.first_name} Tidak Dapat Bergabung Dengan Grup Anda Karena Banyaknya Permintaan Untuk Assistant Saya. Pastikan @AssistantMusicVCGRobot Tidak Dilarang Didalam Group."
+                                  "\n\nAtau Tambahkan @AssistantMusicVCGRobot ke Grup Anda Secara Manual dan Coba Lagi.</b>",
+                              )
+                              pass
     try:
         chatdetails = await USER.get_chat(chid)
         #lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            "<i>Helper Assistant Music Tidak Ada Dalam Obrolan Ini, Minta Admin Untuk Mengirim /play Perintah Untuk Pertama Kalinya atau Tambahkan Asistant Secara Manual.</i>"
+            "<i>Assistant Music Tidak Ada Dalam Obrolan Ini, Minta Admin Untuk Mengirim /play Perintah Untuk Pertama Kalinya atau Tambahkan Asistant Secara Manual.</i>"
         )
         return
     requested_by = message_.from_user.first_name
@@ -594,14 +594,14 @@ async def deezer(client: Client, message_: Message):
         lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.reply(
-            "<i>Helper Assistant Music Tidak Ada Dalam Obrolan Ini, Minta Admin Untuk Mengirim /play Perintah Untuk Pertama Kalinya atau Tambahkan Asistant Secara Manual.</i>"
+            f"<i> {user.first_name} Sedang Tidak Dalam Obrolan Ini, Minta Kepada Admin Untuk Menekan » /joingroup Untuk Pertama Kalinya atau Tambahkan {user.first_name} Secara Manual.</i>"
         )
         pass
 
     text = message_.text.split(" ", 1)
     queryy = text[1]
     res = lel
-    await res.edit(f"Searching for `{queryy}` on deezer")
+    await res.edit(f"🚀 Mencari Lagu `{queryy}` Di Deezer..")
     try:
         arq = ARQ("https://thearq.tech")
         r = await arq.deezer(query=queryy, limit=1)
@@ -612,7 +612,7 @@ async def deezer(client: Client, message_: Message):
         url = r[0]["url"]
     except:
         await res.edit(
-            "Found Literally Nothing, You Should Work On Your English!"
+            "Tidak Ditemukan Secara Harafiah, Anda Harus Menggunakan Bahasa Inggris Dengan Benar!"
         )
         is_playing = False
         return
@@ -644,7 +644,7 @@ async def deezer(client: Client, message_: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        await res.edit_text(f"Playing [{title}]({url}) Via Deezer")
+        await res.edit_text(f"Sedang Memutar [{title}]({url}) Via Deezer.")
     else:
         await res.edit_text("▶️ Sedang Memutar Lagu...")
         chat_id = message_.chat.id
@@ -694,24 +694,24 @@ async def jiosaavn(client: Client, message_: Message):
                try:
                    await USER.join_chat(invitelink)
                    await lel.edit(
-                       "<b>Helper Assistant Music Telah Bergabung Kedalam Obrolan.</b>",
+                       "<b>Robot Telah Bergabung Kedalam Group.</b>",
                    )
 
                except UserAlreadyParticipant:
                    pass
                except Exception as e:
                    #print(e)
-                   #await lel.edit(
-                   #    f"<b>User {user.first_name} couldn't join your group! Make sure user is not banned in group."
-                   #    "\n\nOr manually add @DaisyXmusic to your Group and try again</b>",
-                   #)
-                   pass
+                   await lel.edit(
+                                  f"<b>❌ Flood Wait Error ❌ \n {user.first_name} Tidak Dapat Bergabung Dengan Grup Anda Karena Banyaknya Permintaan Untuk Assistant Saya. Pastikan @AssistantMusicVCGRobot Tidak Dilarang Didalam Group."
+                                  "\n\nAtau Tambahkan @AssistantMusicVCGRobot ke Grup Anda Secara Manual dan Coba Lagi.</b>",
+                              )
+                              pass
     try:
         chatdetails = await USER.get_chat(chid)
         #lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            "<i>Helper Assistant Music Tidak Ada Dalam Obrolan Ini, Minta Admin Untuk Mengirim /play Perintah Untuk Pertama Kalinya atau Tambahkan Asistant Secara Manual.</i>"
+            "<i>Assistant Music Tidak Ada Dalam Obrolan Ini, Minta Admin Untuk Mengirim /play Perintah Untuk Pertama Kalinya atau Tambahkan Asistant Secara Manual.</i>"
         )
         return
     requested_by = message_.from_user.first_name
@@ -719,7 +719,7 @@ async def jiosaavn(client: Client, message_: Message):
     text = message_.text.split(" ", 1)
     query = text[1]
     res = lel
-    await res.edit(f"Searching for `{query}` on Jio Saavn")
+    await res.edit(f"🚀 Mencari Lagu `{query}` Di Jio Saavn.")
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(
@@ -733,7 +733,7 @@ async def jiosaavn(client: Client, message_: Message):
         sduration = int(r[0]["duration"])
     except Exception as e:
         await res.edit(
-            "Found Literally Nothing!, You Should Work On Your English."
+            "Tidak Ditemukan Secara Harafiah, Anda Harus Menggunakan Bahasa Inggris Dengan Benar!"
         )
         print(str(e))
         is_playing = False
@@ -786,7 +786,7 @@ async def jiosaavn(client: Client, message_: Message):
         chat_id=message_.chat.id,
         reply_markup=keyboard,
         photo="final.png",
-        caption=f"Memutar Lagu {sname} Via Jiosaavn",
+        caption=f"🎧 Memutar Lagu {sname} Via Jiosaavn",
         
     )
     os.remove("final.png")
