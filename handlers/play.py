@@ -658,9 +658,9 @@ async def deezer(client: Client, message_: Message):
         reply_markup=keyboard,
         photo="final.png",
         caption=f"#️⃣ Sedang Mengantri di Posisi {position}.)."
-    ) 
+    )
         os.remove("final.png")
-        return await res.delete()
+
 
 @Client.on_message(
     filters.command("splay")
@@ -784,4 +784,3 @@ async def jiosaavn(client: Client, message_: Message):
 
     )
          os.remove("final.png")
-         return await lel.delete()
