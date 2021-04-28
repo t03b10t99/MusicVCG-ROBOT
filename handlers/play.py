@@ -787,4 +787,4 @@ async def jiosaavn(client: Client, message_: Message):
         caption=f"🎧 Memutar Lagu {sname} Via Jiosaavn",
 
     )
-         os.remove("final.png")
+    os.remove("final.png")
