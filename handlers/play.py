@@ -628,7 +628,7 @@ async def deezer(client: Client, message_: Message):
         )
 
     requested_by = message_.from_user.first_name
-    await generate_cover(requested_by, title, views, duration, thumbnail)
+    await generate_cover(requested_by, title, duration, thumbnail, artist)
     file_path = await converter.convert(wget.download(url))
 
     if message_.chat.id in callsmusic.pytgcalls.active_calls:
