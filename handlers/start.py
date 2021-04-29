@@ -1,7 +1,7 @@
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from time import time
 from datetime import datetime
-from pyrogram import Client, filters, emoji
+from pyrogram import Client, filters, app
 from pyrogram.types import Message
 
 from helpers.filters import other_filters, other_filters2
@@ -39,7 +39,7 @@ Silahkan Tekan Tombol » /help """,
             ]
         ),
      disable_web_page_preview=True
-   )
+    )
 
 @Client.on_message(filters.command("online") & ~filters.private & ~filters.channel)
 async def online(_, message: Message):
@@ -132,7 +132,8 @@ async def _human_time_duration(seconds):
                    & self_or_contact_filter
                    & ~filters.edited
                    & ~filters.via_bot
-                   & filters.regex("^!ping$"))
+                   & filters.regex(pattern=r'^(playlist)$'))
+@authorized_users_only
 async def ping(_, message: Message):
     """reply ping with pong and delete both messages"""
     start = time()
@@ -147,7 +148,8 @@ async def ping(_, message: Message):
                    & self_or_contact_filter
                    & ~filters.edited
                    & ~filters.via_bot
-                   & filters.regex("^!uptime$"))
+                   & filters.regex(pattern=r'^(uptime)$'))
+@authorized_users_only
 async def uptime(_, message: Message):
     """/uptime Reply with readable uptime and ISO 8601 start time"""
     current_time = datetime.utcnow()
