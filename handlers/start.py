@@ -4,6 +4,7 @@ from datetime import datetime
 from pyrogram import Client, filters, emoji
 from pyrogram.types import Message
 
+from helpers.filters import other_filters, other_filters2
 from config import BOT_NAME as bn
 
 @Client.on_message(filters.command("start") & filters.private & ~filters.channel)
@@ -127,12 +128,9 @@ async def _human_time_duration(seconds):
     return ', '.join(parts)
 
 
-@Client.on_message(filters.text
-                   & self_or_contact_filter
-                   & ~filters.edited
-                   & ~filters.via_bot
-                   & filters.regex & filters.command("ping"))
-async def ping_pong(_, m: Message):
+@Client.on_message(filters.command("uptime") & other_filters & other_filters2 & ~filters.channel & self_or_contact_filter)
+
+async def ping(_, message: Message):
     """reply ping with pong and delete both messages"""
     start = time()
     m_reply = await m.reply_text("...")
@@ -142,12 +140,8 @@ async def ping_pong(_, m: Message):
     )
 
 
-@Client.on_message(filters.text
-                   & self_or_contact_filter
-                   & ~filters.edited
-                   & ~filters.via_bot
-                   & filters.regex & filters.command("uptime"))
-async def get_uptime(_, m: Message):
+@Client.on_message(filters.command("ping") & other_filters & other_filters2 & ~filters.channel & self_or_contact_filter)
+async def uptime(_, message: Message):
     """/uptime Reply with readable uptime and ISO 8601 start time"""
     current_time = datetime.utcnow()
     uptime_sec = (current_time - START_TIME).total_seconds()
