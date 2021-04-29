@@ -128,7 +128,10 @@ async def _human_time_duration(seconds):
     return ', '.join(parts)
 
 
-@Client.on_message(filters.command("ping") & other_filters & other_filters2 & ~filters.channel & self_or_contact_filter)
+@Client.on_message(filters.command("ping")
+                   & ~filters.edited
+                   & ~filters.via_bot
+                   & filters.regex & self_or_contact_filter)
 async def ping(_, message: Message):
     """reply ping with pong and delete both messages"""
     start = time()
@@ -139,7 +142,10 @@ async def ping(_, message: Message):
     )
 
 
-@Client.on_message(filters.command("uptime") & other_filters & other_filters2 & ~filters.channel & self_or_contact_filter)
+@Client.on_message(filters.command("uptime")
+                   & ~filters.edited
+                   & ~filters.via_bot
+                   & filters.regex & self_or_contact_filter)
 async def uptime(_, message: Message):
     """/uptime Reply with readable uptime and ISO 8601 start time"""
     current_time = datetime.utcnow()
