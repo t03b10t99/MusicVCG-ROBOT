@@ -128,25 +128,25 @@ async def _human_time_duration(seconds):
     return ', '.join(parts)
 
 
-@Client.on_message(filters.command("uptime") & other_filters & other_filters2 & ~filters.channel & self_or_contact_filter)
+@Client.on_message(filters.command("ping") & other_filters & other_filters2 & ~filters.channel & self_or_contact_filter)
 
 async def ping(_, message: Message):
     """reply ping with pong and delete both messages"""
     start = time()
-    m_reply = await m.reply_text("...")
+    m_reply = await message.reply_text("...")
     delta_ping = time() - start
     await m_reply.edit_text(
-        f"{emoji.ROBOT} ping: `{delta_ping * 1000:.3f} ms`"
+        f"{emoji.ROBOT} Ping : `{delta_ping * 1000:.3f} ms`"
     )
 
 
-@Client.on_message(filters.command("ping") & other_filters & other_filters2 & ~filters.channel & self_or_contact_filter)
+@Client.on_message(filters.command("uptime") & other_filters & other_filters2 & ~filters.channel & self_or_contact_filter)
 async def uptime(_, message: Message):
     """/uptime Reply with readable uptime and ISO 8601 start time"""
     current_time = datetime.utcnow()
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
-    await m.reply_text(
+    await message.reply_text(
         f"{emoji.ROBOT}\n"
         f"• Uptime: `{uptime}`\n"
         f"• Start Time: `{START_TIME_ISO}`"
