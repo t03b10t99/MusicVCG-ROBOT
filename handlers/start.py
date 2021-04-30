@@ -128,10 +128,10 @@ async def repo(_, message: Message):
 
 
 #@Client.on_message(filters.text
-                   & self_or_contact_filter
-                   & ~filters.edited
-                   & ~filters.via_bot
-                   & filters.regex(pattern=r'^(playlist)$'))
+#                   & self_or_contact_filter
+#                   & ~filters.edited
+#                   & ~filters.via_bot
+#                   & filters.regex(pattern=r'^(playlist)$'))
 #@authorized_users_only
 #async def ping(_, message: Message):
 #    """reply ping with pong and delete both messages"""
