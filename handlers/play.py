@@ -539,7 +539,7 @@ async def play(_, message: Message):
         await message.reply_photo(
         photo="final.png",
         reply_markup=keyboard,
-        caption="▶️ **Sedang Memutar.**\n\n Lagu Permintaan Dari {}".format(
+        caption="▶️ **Sedang Memainkan. ⇱**\n\n Lagu Permintaan Dari {}".format(
         message.from_user.mention()
         ),
     )
@@ -672,7 +672,7 @@ async def deezer(client: Client, message_: Message):
         chat_id=message_.chat.id,
         reply_markup=keyboard,
         photo="final.png",
-        caption=f"Sedang Memutar [{title}]({url}) Via Deezer"
+        caption=f"▶️ **Sedang Memainkan. ⇱**\n\n [{title}]({url}) Via Deezer"
     ) 
     os.remove("final.png")
 
